@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image '${DOCKER_IMAGE_PYTHON}'
+                    image $DOCKER_IMAGE_PYTHON
                 }
             }
             steps {
@@ -17,7 +17,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image '${DOCKER_IMAGE_PYTHON}'
+                    image $DOCKER_IMAGE_PYTHON
                 }
             }
             steps {
