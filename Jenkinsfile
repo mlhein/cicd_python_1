@@ -18,7 +18,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pip -m install pytest'
+                sh 'pip install pytest'
                 sh 'pytest --junit-xml test-reports/results.xml'
             }
             post {
