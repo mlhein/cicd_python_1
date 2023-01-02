@@ -1,13 +1,10 @@
 pipeline {
     agent none
-    environment {
-        DOCKER_IMAGE_PYTHON = 'python:3.10.9-alpine3.17'
-    }
     stages {
         stage('Build') {
             agent {
                 docker {
-                    image $DOCKER_IMAGE_PYTHON
+                    image 'python:3.10.9-alpine3.17'
                 }
             }
             steps {
@@ -17,7 +14,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image $DOCKER_IMAGE_PYTHON
+                    image 'python:3.10.9-alpine3.17'
                 }
             }
             steps {
