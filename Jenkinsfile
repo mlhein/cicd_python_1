@@ -1,10 +1,13 @@
 pipeline {
     agent none
+    environment {
+        DOCKER_IMAGE_PYTHON = 'python:3.10.9-alpine3.17'
+    }
     stages {
         stage('Build') {
             agent {
                 docker {
-                    image 'python:3.10.9-alpine3.17'
+                    image '${DOCKER_IMAGE_PYTHON}'
                 }
             }
             steps {
@@ -14,11 +17,12 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'qnib/pytest'
+                    image '${DOCKER_IMAGE_PYTHON}'
                 }
             }
             steps {
-                sh 'py.test --junit-xml test-reports/results.xml'
+                sh 'pip -m install pytest'
+                sh 'pytest --junit-xml test-reports/results.xml'
             }
             post {
                 always {
