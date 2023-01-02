@@ -18,8 +18,10 @@ pipeline {
                 }
             }
             steps {
-                sh 'pip install pytest'
-                sh 'pytest --junit-xml test-reports/results.xml'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    sh 'pip install --user pytest'
+                    sh 'pytest --junit-xml test-reports/results.xml'
+                }
             }
             post {
                 always {
