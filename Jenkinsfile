@@ -19,7 +19,7 @@ pipeline {
             }
             steps {
                 // withEnv(["HOME=${env.WORKSPACE}"]) {
-                sh 'python -m pip install pytest'
+                sh 'python -m pip install --user pytest'
                 sh 'python -m pytest --junit-xml test-reports/results.xml'
                 // }
             }
