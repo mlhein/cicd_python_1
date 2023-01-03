@@ -8,7 +8,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'python src/module_one.py'
+                sh 'python -m compileall ./src/'
+                sh 'python -m compileall ./test/'
             }
         }
         stage('Test') {
@@ -19,7 +20,7 @@ pipeline {
             }
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'python -m pip install --user pytest'
+                    sh 'python -m pip install --user requirements.txt'
                     sh 'python -m pytest --junit-xml test-reports/results.xml'
                 }
             }
